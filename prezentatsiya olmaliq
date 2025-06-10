@@ -1,0 +1,9 @@
+ from pptx import Presentation
+from transliterate import translit
+
+prs = Presentation("sizga_fayl.pptx")
+for slide in prs.slides:
+    for shape in slide.shapes:
+        if hasattr(shape, "text"):
+            shape.text = translit(shape.text, 'uz', reversed=True)
+prs.save("lotin.pptx")
